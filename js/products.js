@@ -32,7 +32,7 @@ function showProductsList(){
 
 
 document.addEventListener("DOMContentLoaded", function(e){
-getJSONData(AUTOS_URL).then(function(resultObj){
+getJSONData(PRODUCTS_URL + localStorage.getItem("catID") + EXT_TYPE).then(function(resultObj){
 if (resultObj.status === "ok") {
     currentProductsArray = resultObj.data.products
     console.log(currentProductsArray)
@@ -41,3 +41,4 @@ if (resultObj.status === "ok") {
 })
 })
 
+document.getElementById("nombreUsuarioPro").innerHTML = (localStorage.getItem("usuario"));

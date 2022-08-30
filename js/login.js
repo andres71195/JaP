@@ -16,6 +16,10 @@ ingresar.addEventListener("click", (e) => {
     else {
     window.location.href='main.html'
     }
+})
 
-
+ingresar.addEventListener("click", (e) =>{
+if (email.value) {
+    localStorage.setItem("usuario", email.value)
+}
 })
