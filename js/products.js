@@ -12,14 +12,14 @@ function sortProducts(criteria, array){
     if (criteria === ORDER_ASC_BY_PRICE)
     {
         result = array.sort(function(a, b) {
-            if ( a.name < b.name ){ return -1; }
-            if ( a.name > b.name ){ return 1; }
+            if ( a.cost < b.cost ){ return -1; }
+            if ( a.cost > b.cost ){ return 1; }
             return 0;
         });
     }else if (criteria === ORDER_DESC_BY_PRICE){
         result = array.sort(function(a, b) {
-            if ( a.name > b.name ){ return -1; }
-            if ( a.name < b.name ){ return 1; }
+            if ( a.cost > b.cost ){ return -1; }
+            if ( a.cost < b.cost ){ return 1; }
             return 0;
         });
     }else if (criteria === ORDER_BY_SOLD_COUNT){
@@ -46,22 +46,24 @@ function showProductsList(){
         if (((minCount == undefined) || (minCount != undefined && parseInt(product.cost) >= minCount)) &&
             ((maxCount == undefined) || (maxCount != undefined && parseInt(product.cost) <= maxCount))){
 
-    htmlContentToAppend += `
-    <div onclick="${product.id}" class="list-group-item list-group-item-action cursor-active">
-                <div class="row">
-                    <div class="col-3">
-                        <img src="${product.image}" alt="${product.description}" class="img-thumbnail">
-                    </div>
-                    <div class="col">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h4 class="mb-1">${product.name} - ${product.currency} ${product.cost}</h4>
-                            <small class="text-muted">${product.soldCount} artículos</small>
-                        </div>
-                        <p class="mb-1">${product.description}</p>
-                    </div>
-                </div>
-                </div>
-                `;
+    let {id, image, description, name, currency, cost, soldCount} = product;
+
+                htmlContentToAppend += `
+                <div onclick="${id}" class="list-group-item list-group-item-action cursor-active">
+                            <div class="row">
+                                <div class="col-3">
+                                    <img src="${image}" alt="${description}" class="img-thumbnail">
+                                </div>
+                                <div class="col">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h4 class="mb-1">${name} - ${currency} ${cost}</h4>
+                                        <small class="text-muted">${soldCount} artículos</small>
+                                    </div>
+                                    <p class="mb-1">${description}</p>
+                                </div>
+                            </div>
+                            </div>
+                            `;
 
                 document.getElementById("product-list-container").innerHTML = htmlContentToAppend;
 }
@@ -88,7 +90,7 @@ getJSONData(PRODUCTS_URL + localStorage.getItem("catID") + EXT_TYPE).then(functi
 if (resultObj.status === "ok") {
     console.log(resultObj.data.catName); //console log para ver nombre de la categoría, no guardado en localStorage
     document.getElementById("CatName").innerHTML += resultObj.data.catName
-    currentProductsArray = resultObj.data.products; //Puede que esto genere problemas. En categories es .data
+    currentProductsArray = resultObj.data.products; 
     showProductsList();
 }
 })
