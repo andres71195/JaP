@@ -10,6 +10,7 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -31,18 +32,65 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link"><span id="nombreUsuarioProInfo" style="color:white;">Hola</span></a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+
+
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+
+    <div class="row">
+      <!-- div para info de productos -->
+      <div class="list-group" id="productInfo-list-container">
+      </div>
+      <div>
+        <br>
+        <br>
+        <br>
+        <div class="container">
+          <h4>Comentarios</h4>
+        </div>
+        <br>
+      </div>
+      <!-- div para comentarios de productos -->
+      <div class="list-group" id="productComents-container">
+
+        <!-- Acá ingresa el nuevo contenido con los comentarios -->
+
+      </div>
+      <!-- div para comentar -->
+      <div class="list-group">
+        <div class="container">
+
+          <h4>Comentar:</h4>
+          <label for="opinion" class="form-label">Tu opinión:</label>
+          <br>
+          <textarea name="opinion" rows="4" cols="70"></textarea>
+          <br>
+          <br>
+          <p>Tu puntuación:</p>
+          <div>
+          <select name="puntuacion" id="puntuacion" style="width:80px">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+          <br>
+          <button type="buttom" style="background-color: blue; border-color:blue; color:white; border-radius: 4px;">Enviar</button>
+        </div>
       </div>
     </div>
+
   </main>
+
+
+
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
