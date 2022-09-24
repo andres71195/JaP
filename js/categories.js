@@ -143,4 +143,4 @@ document.addEventListener("DOMContentLoaded", function(e){
 });
 
 
-document.getElementById("nombreUsuarioCat").innerHTML = (localStorage.getItem("usuario"));
+document.getElementById("nombreUsuarioPro").innerHTML = (localStorage.getItem("usuario"));

@@ -32,7 +32,17 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link"><span id="nombreUsuarioProInfo" style="color:white;">Hola</span></a>
+            <div class="dropdown">
+              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+              <span id="nombreUsuarioPro" style="color:white;"></span>
+              </a>
+            
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+                <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+                <li><a class="dropdown-item" href="index.html">Cerrar sesión</a></li>
+              </ul>
+            </div>
           </li>
         </ul>
       </div>
@@ -51,7 +61,7 @@
         <br>
         <br>
         <div class="container">
-          <h4>Comentarios</h4>
+          <h4><strong>Comentarios</strong></h4>
         </div>
         <br>
       </div>
@@ -65,27 +75,50 @@
       <div class="list-group">
         <div class="container">
 
-          <h4>Comentar:</h4>
+          <h4><strong>Comentar:</strong></h4>
           <label for="opinion" class="form-label">Tu opinión:</label>
           <br>
-          <textarea name="opinion" rows="4" cols="70"></textarea>
+          <textarea name="opinion" rows="4" cols="70" id="opinion"></textarea>
           <br>
           <br>
           <p>Tu puntuación:</p>
           <div>
-          <select name="puntuacion" id="puntuacion" style="width:80px">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-        </div>
+            <select name="puntuacion" id="puntuacion" style="width:80px">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
           <br>
-          <button type="buttom" style="background-color: blue; border-color:blue; color:white; border-radius: 4px;">Enviar</button>
+          <button type="buttom" style="background-color: blue; border-color:blue; color:white; border-radius: 4px;"
+            id="sendComent">Enviar</button>
+          <hr>
         </div>
+        <!-- Cierre div list-group -->
       </div>
-    </div>
+
+      <br>
+      <br>
+
+      <!-- Apertura divs para productos relacionados -->
+
+      <div class="list-group">
+        <br>
+
+        <div class="container">
+          <h4><strong>Productos relacionados</strong></h4>
+        </div>
+        <br>
+
+        <!-- div para productos relacionados -->
+        <div class="list-group" id="related-products-list">
+
+        </div>
+
+        <!-- Cierre de div row (contenedor de TODO el texto de la main)-->
+      </div>
 
   </main>
 

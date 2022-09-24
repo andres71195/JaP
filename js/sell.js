@@ -147,3 +147,5 @@ document.addEventListener("DOMContentLoaded", function(e){
         }
     });
 });
+
+document.getElementById("nombreUsuarioPro").innerHTML = (localStorage.getItem("usuario"));

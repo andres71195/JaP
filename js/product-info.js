@@ -1,4 +1,5 @@
 let currentProductInfoArray = [];
+let relatedProductsArray = [];
 let productComentsArray = [];
 // const PRODUCT_INFO_COMMENTS_URL = "https://japceibal.github.io/emercado-api/products_comments/" + ID + EXT_TYPE
 //Constantes con código HTML para cada uno de los scores posibles
@@ -19,7 +20,7 @@ function showProductInfo() {
     htmlContentToAppend += `
                 <br>
                 <div class="container">
-                <h3>${name}</h3>
+                <h3><strong>${name}</strong></h3>
                 <br>
                 <hr>
                 <h6><strong>Precio</strong></h6>
@@ -114,12 +115,48 @@ function showProductComents() {
 }
 };
 
+function setProductID(id) {
+    localStorage.setItem("productID", id);
+    window.location = "product-info.html";
+}
+
+function showRelatedProducts() {
+
+    let htmlContentToAppend = "";
+
+    for(let i = 0; i < relatedProductsArray.length; i++){
+        let relproduct = relatedProductsArray[i];
+
+    let {id, name, image} = relproduct;
+
+
+    htmlContentToAppend += `
+                <div onclick="setProductID(${id})" class="list-group-item list-group-item-action cursor-active">
+                <div class="container">
+                <div class="row">
+                <div class="col-sm-6 col-md-3">
+                <img src="${image}" class="img-thumbnail"> 
+                <h5>${name}</h5>
+                </div>
+                </div>
+                </div>
+                </div>
+                <br>
+                `;
+
+    document.getElementById("related-products-list").innerHTML = htmlContentToAppend;
+}
+};
+
+
 
 document.addEventListener("DOMContentLoaded", function (e) {
     getJSONData(PRODUCT_INFO_URL + localStorage.getItem("productID") + EXT_TYPE).then(function (resultObj) {
         if (resultObj.status === "ok") {
             currentProductInfoArray = resultObj.data;
+            relatedProductsArray = currentProductInfoArray.relatedProducts
             showProductInfo();
+            showRelatedProducts();
         }
     });
     getJSONData(PRODUCT_INFO_COMMENTS_URL + localStorage.getItem("productID") + EXT_TYPE).then(function (resultObj) {
@@ -130,8 +167,22 @@ document.addEventListener("DOMContentLoaded", function (e) {
     })
 });
 
+document.getElementById("sendComent").addEventListener("click", (e) => {
+let today = new Date();
+let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+let time = today.getHours()+':'+today.getMinutes()+':'+today.getSeconds();
+
+    document.getElementById("productComents-container").innerHTML += `
+    <div class="container">
+    <div class="caja">
+    <p><strong>${localStorage.getItem("usuario")}</strong>-${date + ' '+ time}- ${showStars(document.getElementById("puntuacion").value)}</p>
+    <p>${document.getElementById("opinion").value}</p>
+    </div>
+    </div>
+    `;
+    document.getElementById("opinion").value = "";
+})
 
 
 
-
-    document.getElementById("nombreUsuarioProInfo").innerHTML = (localStorage.getItem("usuario")); //Agregar correo de usuario arriba
+document.getElementById("nombreUsuarioPro").innerHTML = (localStorage.getItem("usuario"));

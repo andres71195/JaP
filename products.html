@@ -31,7 +31,17 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link"><span id="nombreUsuarioPro" style="color:white;">Hola</span></a>
+            <div class="dropdown">
+              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+              <span id="nombreUsuarioPro" style="color:white;"></span>
+              </a>
+            
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+                <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+                <li><a class="dropdown-item" href="index.html">Cerrar sesión</a></li>
+              </ul>
+            </div>
           </li>
         </ul>
       </div>
@@ -43,6 +53,9 @@
     <div class="text-center p-4">
       <h2>Productos</h2>
       <p class="lead">Verás aquí todos los productos de la categoría <span id="CatName"></span>.</p>
+      </div>
+      <div class="container">
+        <input type="search" placeholder="Busca tus productos" id="searchProducts" >
       </div>
 
       <div class="container">
@@ -107,6 +120,7 @@
       <div></div>
     </div>
   </div>
+
 
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>

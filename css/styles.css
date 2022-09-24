@@ -198,3 +198,7 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+.filtro {
+  display: none;
+}
