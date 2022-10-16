@@ -33,10 +33,11 @@
           </li>
           <li class="nav-item">
             <div class="dropdown">
-              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-              <span id="nombreUsuarioPro" style="color:white;"></span>
+              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <span id="nombreUsuarioPro" style="color:white;"></span>
               </a>
-            
+
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
                 <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
@@ -49,11 +50,72 @@
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
+    <div class="text-center p-4">
+      <h2>Carrito de compras</h2>
     </div>
+    <div class="container">
+      <p class="lead">Articulos a comprar</p>
+      <br>
+      <br>
+
+      <table id="tableProductsCart">
+        <tr>
+          <th></th>
+          <th>Nombre</th>
+          <th>Costo</th>
+          <th>Cantidad</th>
+          <th>Subtotal</th>
+        </tr>
+
+        <!-- Aqui ingresarían los articulos como una nueva columna o celda contenedora <tr><td></td></tr> -->
+
+
+      </table>
+      <hr>
+      <br>
+      <!-- Tipos de envio y dirección -->
+
+      <h4><strong>Tipo de envío</strong></h4>
+      <br>
+      <div class="list-group">
+        <div class="container">
+          <section>
+        <input type="radio" name="envio" checked>
+        <label for="premium">Premium 2 a 5 días (15%)</label>
+        <br>
+        <input type="radio" name="envio">
+        <label for="express">Express 5 a 8 días (7%)</label>
+        <br>
+        <input type="radio" name="envio">
+        <label for="standard">Standard 12 a 15 días (5%)</label>
+      </section>
+      </div>
+      <br>
+      <h4><strong>Dirección de envío</strong></h4>
+      <br>
+      <div class="container">
+      <label for="calle" class="form-label">Calle:</label>
+      <br>
+      <input name="calle" class="long-input">
+      <br>
+      <br>
+      <label for="numero" class="form-label">Número:</label>
+      <br>
+      <input name="numero">
+      <br>
+      <br>
+      <label for="esquina" class="form-label">Esquina:</label>
+      <br>
+      <input name="esquina" class="long-input">
+      <hr>
+
+      </div>
+
+
+      </div>
+
+    </div>
+
   </main>
   <footer class="text-muted">
     <div class="container">

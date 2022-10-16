@@ -202,3 +202,42 @@ a.custom-card:hover {
 .filtro {
   display: none;
 }
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  text-align:center;
+}
+
+th {
+  border-bottom: 2px solid grey;
+}
+
+td {
+  padding: 20px;
+}
+
+.inputCant {
+  text-align: center;
+}
+
+.small-img {
+  height: 80px;
+  width: 120px;
+  border: solid 2px black ;
+}
+
+.long-input {
+  width: 350px;
+}
+
+.buttonComprar {
+  color:white; 
+  background-color:green; 
+  margin-left:80%;
+  width: 150px;
+  height: 40px;
+  border: none;
+  font-size: large;
+}

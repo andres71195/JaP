@@ -1,4 +1,5 @@
 let currentProductInfoArray = [];
+let currentProductInfoImages = [];
 let relatedProductsArray = [];
 let productComentsArray = [];
 // const PRODUCT_INFO_COMMENTS_URL = "https://japceibal.github.io/emercado-api/products_comments/" + ID + EXT_TYPE
@@ -10,17 +11,22 @@ const scoreTres = '<span class="fa fa-star checked"></span><span class="fa fa-st
 const scoreCuatro = '<span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span>';
 const scoreCinco = '<span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>';
 
+
+function setcarritoID(id) {
+    localStorage.setItem("carritoID", id);
+    alert("Producto añadido a tu carrito");
+}
+
 function showProductInfo() {
 
-    let htmlContentToAppend = "";
-
-    let { images, description, name, currency, cost, soldCount, category } = currentProductInfoArray;
+    let {description, name, currency, cost, soldCount, category, id} = currentProductInfoArray;
 
     //Seria bueno encontrar la forma de visualizar las imagenes en alta resolución SIN salirse de la página actual.
-    htmlContentToAppend += `
+    document.getElementById("productInfo-list-container").innerHTML += `
                 <br>
                 <div class="container">
-                <h3><strong>${name}</strong></h3>
+                <br>
+                <h3><strong>${name}</strong></h3> <button type="button" class="buttonComprar" id="buttonComprar" onclick="setcarritoID(${id})">Comprar</button>
                 <br>
                 <hr>
                 <h6><strong>Precio</strong></h6>
@@ -35,33 +41,20 @@ function showProductInfo() {
                 <h6><strong>Cantidad de vendidos</strong></h6>
                 <p>${soldCount}</p>
                 </div>
-                <div class="container">
-                <h6><strong>Imagenes ilustrativas</strong></h6>
-                <div class="row">
+                `;
+
+currentProductInfoImages = currentProductInfoArray.images;
+
+for (let image of currentProductInfoImages) {
+
+    document.getElementById("productInfo-images").innerHTML += `
                 <div class="col-sm-6 col-md-3">
-                <a href="${images[0]}" class="thumbnail">
-                <img src="${images[0]}" class="img-thumbnail">
+                <a href="${image}" class="thumbnail">
+                <img src="${image}" class="img-thumbnail">
                 </a> 
                 </div>
-                <div class="col-sm-6 col-md-3">
-                <a href="${images[1]}" class="thumbnail">
-                <img src="${images[1]}" class="img-thumbnail">
-                </a>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                <a href="${images[2]}" class="thumbnail">
-                <img src="${images[2]}" class="img-thumbnail">
-                </a>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                <a href="${images[3]}" class="thumbnail">
-                <img src="${images[3]}" class="img-thumbnail">
-                </a>
-                </div>
-                </div>
-                </div>
                 `;
-    document.getElementById("productInfo-list-container").innerHTML = htmlContentToAppend;
+}
 };
 
 
@@ -157,6 +150,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
             relatedProductsArray = currentProductInfoArray.relatedProducts
             showProductInfo();
             showRelatedProducts();
+            console.log(currentProductInfoImages);
         }
     });
     getJSONData(PRODUCT_INFO_COMMENTS_URL + localStorage.getItem("productID") + EXT_TYPE).then(function (resultObj) {
@@ -181,8 +175,6 @@ let time = today.getHours()+':'+today.getMinutes()+':'+today.getSeconds();
     </div>
     `;
     document.getElementById("opinion").value = "";
-})
-
-
+});
 
 document.getElementById("nombreUsuarioPro").innerHTML = (localStorage.getItem("usuario"));
