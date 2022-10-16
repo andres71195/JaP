@@ -22,13 +22,3 @@ ingresar.addEventListener("click", (e) => {
     };
 
 });
-
-window.onload = function () {
-    google.accounts.id.initialize({
-        client_id: '595523676664-9vdo96luuflek3jkoqtt46tv1ehuirm0.apps.googleusercontent.com',
-        callback: handleCredentialResponse
-    });
-    google.accounts.id.prompt();
-};
-
-window.onload();
