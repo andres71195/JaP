@@ -72,15 +72,19 @@
     <br>
     <br>
 <!-- Intento boton google -->
-<script>
-  window.onload = function () {
-    google.accounts.id.initialize({
-      client_id: '595523676664-9vdo96luuflek3jkoqtt46tv1ehuirm0.apps.googleusercontent.com',
-      callback: handleCredentialResponse
-    });
-    google.accounts.id.prompt();
-  }
-</script>
+<div id="g_id_onload"
+data-client_id="595523676664-9vdo96luuflek3jkoqtt46tv1ehuirm0.apps.googleusercontent.com"
+data-login_uri="https://your.domain/your_login_endpoint"
+data-auto_prompt="false">
+</div>
+<div class="g_id_signin"
+data-type="standard"
+data-size="large"
+data-theme="outline"
+data-text="sign_in_with"
+data-shape="rectangular"
+data-logo_alignment="left">
+</div>
 <!-- Intento boton google -->
   </main>
   <footer class="text-muted">
@@ -93,6 +97,8 @@
       <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
     </div>
   </footer>
+
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
   <script src="js/login.js"></script>
 </body>
 
