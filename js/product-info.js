@@ -19,7 +19,7 @@ function setcarritoID(id) {
 
 function showProductInfo() {
 
-    let {description, name, currency, cost, soldCount, category, id} = currentProductInfoArray;
+    let { description, name, currency, cost, soldCount, category, id } = currentProductInfoArray;
 
     //Seria bueno encontrar la forma de visualizar las imagenes en alta resolución SIN salirse de la página actual.
     document.getElementById("productInfo-list-container").innerHTML += `
@@ -43,19 +43,24 @@ function showProductInfo() {
                 </div>
                 `;
 
-currentProductInfoImages = currentProductInfoArray.images;
+    currentProductInfoImages = currentProductInfoArray.images;
 
-for (let image of currentProductInfoImages) {
+    document.getElementById("carousel-inner").innerHTML += `
+    <div class="carousel-item active" data-bs-interval="2000">
+        <img src="${currentProductInfoImages[0]}"  height="300px" width="400px">
+        </div>
+    `
 
-    document.getElementById("productInfo-images").innerHTML += `
-                <div class="col-sm-6 col-md-3">
-                <a href="${image}" class="thumbnail">
-                <img src="${image}" class="img-thumbnail">
-                </a> 
-                </div>
+    for (let image of currentProductInfoImages) {
+
+        document.getElementById("carousel-inner").innerHTML += `
+        <div class="carousel-item" data-bs-interval="2000">
+        <img src="${image}"   height="300px" width="400px">
+        </div>
                 `;
-}
+    }
 };
+
 
 
 // Función para mostrar estrellas según score
@@ -90,12 +95,12 @@ function showProductComents() {
 
     let htmlContentToAppendComents = "";
 
-    for(let i = 0; i < productComentsArray.length; i++){
+    for (let i = 0; i < productComentsArray.length; i++) {
         let coment = productComentsArray[i];
 
-    let { user, dateTime, score, description } = coment;
+        let { user, dateTime, score, description } = coment;
 
-    htmlContentToAppendComents += `
+        htmlContentToAppendComents += `
         <div class="container">
         <div class="caja">
         <p><strong>${user}</strong>-${dateTime}- ${showStars(score)}</p>
@@ -104,8 +109,8 @@ function showProductComents() {
         </div>
         `;
 
-    document.getElementById("productComents-container").innerHTML = htmlContentToAppendComents;
-}
+        document.getElementById("productComents-container").innerHTML = htmlContentToAppendComents;
+    }
 };
 
 function setProductID(id) {
@@ -117,13 +122,13 @@ function showRelatedProducts() {
 
     let htmlContentToAppend = "";
 
-    for(let i = 0; i < relatedProductsArray.length; i++){
+    for (let i = 0; i < relatedProductsArray.length; i++) {
         let relproduct = relatedProductsArray[i];
 
-    let {id, name, image} = relproduct;
+        let { id, name, image } = relproduct;
 
 
-    htmlContentToAppend += `
+        htmlContentToAppend += `
                 <div onclick="setProductID(${id})" class="list-group-item list-group-item-action cursor-active">
                 <div class="container">
                 <div class="row">
@@ -137,8 +142,8 @@ function showRelatedProducts() {
                 <br>
                 `;
 
-    document.getElementById("related-products-list").innerHTML = htmlContentToAppend;
-}
+        document.getElementById("related-products-list").innerHTML = htmlContentToAppend;
+    }
 };
 
 
@@ -162,14 +167,14 @@ document.addEventListener("DOMContentLoaded", function (e) {
 });
 
 document.getElementById("sendComent").addEventListener("click", (e) => {
-let today = new Date();
-let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-let time = today.getHours()+':'+today.getMinutes()+':'+today.getSeconds();
+    let today = new Date();
+    let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    let time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
 
     document.getElementById("productComents-container").innerHTML += `
     <div class="container">
     <div class="caja">
-    <p><strong>${localStorage.getItem("usuario")}</strong>-${date + ' '+ time}- ${showStars(document.getElementById("puntuacion").value)}</p>
+    <p><strong>${localStorage.getItem("usuario")}</strong>-${date + ' ' + time}- ${showStars(document.getElementById("puntuacion").value)}</p>
     <p>${document.getElementById("opinion").value}</p>
     </div>
     </div>

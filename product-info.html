@@ -57,79 +57,85 @@
       <!-- div para info de productos -->
       <div class="list-group" id="productInfo-list-container">
       </div>
+
       <!-- div para imagenes de productos -->
       <div class="list-group">
-      <div class="container">
-        <h6><strong>Imagenes ilustrativas</strong></h6>
-        <div class="row" id="productInfo-images">
-          <!-- acá entran las imagenes -->
-        </div>
-      </div>
-
-      <div>
-        <br>
-        <br>
-        <br>
         <div class="container">
-          <h4><strong>Comentarios</strong></h4>
+          <h6><strong>Imagenes ilustrativas</strong></h6>
         </div>
         <br>
-      </div>
-      
-      <!-- div para comentarios de productos -->
-      <div class="list-group" id="productComents-container">
+        <br>
 
-        <!-- Acá ingresa el nuevo contenido con los comentarios -->
-
-      </div>
-      <!-- div para comentar -->
-      <div class="list-group">
         <div class="container">
-
-          <h4><strong>Comentar:</strong></h4>
-          <label for="opinion" class="form-label">Tu opinión:</label>
-          <br>
-          <textarea name="opinion" rows="4" cols="70" id="opinion"></textarea>
-          <br>
-          <br>
-          <p>Tu puntuación:</p>
-          <div>
-            <select name="puntuacion" id="puntuacion" style="width:80px">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </select>
+          <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner" id="carousel-inner">
+            </div>
           </div>
+        </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="container">
+              <h4><strong>Comentarios</strong></h4>
+            </div>
+            <br>
+          </div>
+
+          <!-- div para comentarios de productos -->
+          <div class="list-group" id="productComents-container">
+
+            <!-- Acá ingresa el nuevo contenido con los comentarios -->
+
+          </div>
+          <!-- div para comentar -->
+          <div class="list-group">
+            <div class="container">
+
+              <h4><strong>Comentar:</strong></h4>
+              <label for="opinion" class="form-label">Tu opinión:</label>
+              <br>
+              <textarea name="opinion" rows="4" cols="70" id="opinion"></textarea>
+              <br>
+              <br>
+              <p>Tu puntuación:</p>
+              <div>
+                <select name="puntuacion" id="puntuacion" style="width:80px">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+              </div>
+              <br>
+              <button type="buttom" style="background-color: blue; border-color:blue; color:white; border-radius: 4px;"
+                id="sendComent">Enviar</button>
+              <hr>
+            </div>
+            <!-- Cierre div list-group -->
+          </div>
+
           <br>
-          <button type="buttom" style="background-color: blue; border-color:blue; color:white; border-radius: 4px;"
-            id="sendComent">Enviar</button>
-          <hr>
-        </div>
-        <!-- Cierre div list-group -->
-      </div>
+          <br>
 
-      <br>
-      <br>
+          <!-- Apertura divs para productos relacionados -->
 
-      <!-- Apertura divs para productos relacionados -->
+          <div class="list-group">
+            <br>
 
-      <div class="list-group">
-        <br>
+            <div class="container">
+              <h4><strong>Productos relacionados</strong></h4>
+            </div>
+            <br>
 
-        <div class="container">
-          <h4><strong>Productos relacionados</strong></h4>
-        </div>
-        <br>
+            <!-- div para productos relacionados -->
+            <div class="list-group" id="related-products-list">
 
-        <!-- div para productos relacionados -->
-        <div class="list-group" id="related-products-list">
+            </div>
 
-        </div>
-
-        <!-- Cierre de div row (contenedor de TODO el texto de la main)-->
-      </div>
+            <!-- Cierre de div row (contenedor de TODO el texto de la main)-->
+          </div>
 
   </main>
 
