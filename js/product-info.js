@@ -10,12 +10,63 @@ const scoreDos = '<span class="fa fa-star checked"></span><span class="fa fa-sta
 const scoreTres = '<span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>';
 const scoreCuatro = '<span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span>';
 const scoreCinco = '<span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>';
-
+let arrCarritoID = [];
 
 function setcarritoID(id) {
-    localStorage.setItem("carritoID", id);
-    alert("Producto añadido a tu carrito");
-}
+
+    //1.Procedimiento si no existe el array en el localStorage
+
+    //Traigo del localStorage el item
+    let carritoStorage = JSON.parse(localStorage.getItem("carritoID"));
+
+    //Verifico si existe el elemento.
+    if (!carritoStorage) {
+
+    //Pusheo info que me interesa, con el formato adecuado, al array que luego colocaré en el localStorage.
+
+            arrCarritoID.push({
+                "id":currentProductInfoArray.id,
+                "name": currentProductInfoArray.name,
+                "count": 1,
+                "unitCost": currentProductInfoArray.cost,
+                "currency": currentProductInfoArray.currency,
+                "image": currentProductInfoArray.images[0]
+            });
+
+    // Igualo el item anterior al array global
+        carritoStorage = arrCarritoID;
+
+    //Guardo el array en el localStorage
+        localStorage.setItem("carritoID", JSON.stringify(carritoStorage));
+    }
+
+//2. Procedimiento si YA existe el array en el localStorage y necesito agregar un nuevo id de producto al mismo
+
+else if (carritoStorage) {
+
+    //Traigo el el array del localStorage y lo parseo
+    arrCarritoID = JSON.parse(localStorage.getItem("carritoID"));
+
+    //Pusheo la info que me interesa en el formado adecuado al array que luego colocaré en el localStorage
+
+    arrCarritoID.push({
+        "id":currentProductInfoArray.id,
+        "name": currentProductInfoArray.name,
+        "count": 1,
+        "unitCost": currentProductInfoArray.cost,
+        "currency": currentProductInfoArray.currency,
+        "image": currentProductInfoArray.images[0]
+    });
+
+    // Igualo el array contenedor al array que voy a colocar en el localStorage.
+    carritoStorage = arrCarritoID;
+
+    //Coloco el array mencionado en el localStorage mediante JSON.stringify
+
+    localStorage.setItem("carritoID", JSON.stringify(carritoStorage));
+};
+
+};
 
 function showProductInfo() {
 

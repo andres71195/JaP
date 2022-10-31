@@ -57,62 +57,241 @@
       <p class="lead">Articulos a comprar</p>
       <br>
       <br>
+      <!-- //form para realizar validaciones con bootstrap -->
+      <form class="needs-validation" id="form-cart" action="/cart.html" novalidate>
 
-      <table id="tableProductsCart">
-        <tr>
-          <th></th>
-          <th>Nombre</th>
-          <th>Costo</th>
-          <th>Cantidad</th>
-          <th>Subtotal</th>
-        </tr>
+        <table id="tableProductsCart">
+          <tr>
+            <th></th>
+            <th>Nombre</th>
+            <th>Costo</th>
+            <th>Cantidad</th>
+            <th>Subtotal</th>
+          </tr>
 
-        <!-- Aqui ingresarían los articulos como una nueva columna o celda contenedora <tr><td></td></tr> -->
+          <!-- Aqui ingresarían los articulos como una nueva columna o celda contenedora <tr><td></td></tr> -->
 
 
-      </table>
-      <hr>
-      <br>
-      <!-- Tipos de envio y dirección -->
-
-      <h4><strong>Tipo de envío</strong></h4>
-      <br>
-      <div class="list-group">
-        <div class="container">
-          <section>
-        <input type="radio" name="envio" checked>
-        <label for="premium">Premium 2 a 5 días (15%)</label>
+        </table>
+        <hr>
         <br>
-        <input type="radio" name="envio">
-        <label for="express">Express 5 a 8 días (7%)</label>
+        <!-- Tipos de envio y dirección -->
+
+        <h4><strong>Tipo de envío</strong></h4>
         <br>
-        <input type="radio" name="envio">
-        <label for="standard">Standard 12 a 15 días (5%)</label>
-      </section>
-      </div>
-      <br>
-      <h4><strong>Dirección de envío</strong></h4>
-      <br>
-      <div class="container">
-      <label for="calle" class="form-label">Calle:</label>
-      <br>
-      <input name="calle" class="long-input">
-      <br>
-      <br>
-      <label for="numero" class="form-label">Número:</label>
-      <br>
-      <input name="numero">
-      <br>
-      <br>
-      <label for="esquina" class="form-label">Esquina:</label>
-      <br>
-      <input name="esquina" class="long-input">
-      <hr>
+        <div class="list-group">
+          <div class="container">
+            <section>
+              <input type="radio" class="form-check-input" name="envio" checked id="premium_shipping" onchange="new_shipping_Cost()" required>
+              <label for="premium">Premium 2 a 5 días (15%)</label>
+              <br>
+              <input type="radio" class="form-check-input" name="envio" id="express_shipping" onchange="new_shipping_Cost()" required>
+              <label for="express">Express 5 a 8 días (7%)</label>
+              <br>
+              <input type="radio" class="form-check-input" name="envio" id="standard_shipping" onchange="new_shipping_Cost()" required>
+              <label for="standard">Standard 12 a 15 días (5%)</label>
+            </section>
+          </div>
+          <br>
+          <hr>
+          <br>
+          <h4><strong>Dirección de envío</strong></h4>
+          <br>
+          <div class="container">
+            <div>
+              <label for="calle" class="form-label">Calle:</label>
+              <br>
+              <input name="calle" class="long-input form-control" id="calle" required>
+              <div class="valid-feedback">
+                Calle completada.
+              </div>
+              <div class="invalid-feedback">
+                Ingrese una calle.
+              </div>
+              <br>
+              <br>
+            </div>
+            <div>
+              <label for="numero" class="form-label">Número:</label>
+              <br>
+              <input name="numero" id="numero" class="long-input form-control" required>
+              <div class="valid-feedback">
+                Número completado.
+              </div>
+              <div class="invalid-feedback">
+                Ingrese un número.
+              </div>
+              <br>
+              <br>
+            </div>
+            <div>
+              <label for="esquina" class="form-label">Esquina:</label>
+              <br>
+              <input name="esquina" class="long-input form-control" id="esquina" required>
+              <div class="valid-feedback">
+                Esquina completada.
+              </div>
+              <div class="invalid-feedback">
+                Ingrese una esquina.
+              </div>
+              <br>
+              <br>
+            </div>
+            <hr>
 
-      </div>
+          </div>
+
+          <!-- Costos -->
+          <br>
+          <h4><strong>Costos</strong></h4>
+          <br>
+          <div class="container">
+
+            <ul class="list-group mb-3">
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                  <h6 class="my-0"><strong>Subtotal</strong></h6>
+                  <small class="text-muted">Costo unitario del producto por cantidad</small>
+                </div>
+                <div>
+                <span class="text-muted">USD</span><span class="text-muted" id="subtotal_General"> </span>
+              </div>
+            </li>
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                  <h6 class="my-0"><strong>Costo de envío</strong></h6>
+                  <small class="text-muted">Según el tipo de envío</small>
+                </div>
+                <div>
+                <span class="text-muted">USD</span><span class="text-muted" id="shippingCost"> </span>
+              </div>
+            </li>
+              <li class="list-group-item d-flex justify-content-between">
+                <span><strong>Total ($)</strong></span>
+                <div>
+                <span><strong>USD</strong></span><span id="total"> </span>
+              </div>
+            </li>
+            </ul>
+
+          </div>
+          <br>
+          <hr>
+          <br>
+          <h4><strong>Forma de pago</strong></h4>
+          <div class="container">
+            <span id="spanpayForm">No ha seleccionado.</span>
+            <button type="button" class="m-1 btn btn-link" data-bs-toggle="modal"
+              data-bs-target="#paymentFormsModal">Seleccionar</button>
+            <p id="feedback-payForm"></p>
+            <p id="feedback-payFormField"></p>
+          </div>
+          <br>
+          <hr>
+          <br>
+          <button class="btn btn-primary" type="submit" >Finalizar compra</button>
+          <br>
+          
+          <!-- div contenedor de la alerta exitosa luego de validar el formulario -->
+          <div id="div_Alert"></div>
+
+          <!-- //Modal -->
+
+          <div class="modal fade" id="paymentFormsModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="paymentFormsModalLabel"><strong>Forma de pago</strong></h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                  <div>
+                    <input type="radio" class="form-check-input" name="paymentForms" id="creditCard"
+                      oninput="disableBankTransfer()" aria-describedby="nullFormPayFeedback" required>
+                    <label for="creditCard">Tarjeta de crédito</label>
+                    <div class="invalid-feedback" id="nullFormPay">
+                      Debe elegir una forma de pago.
+                    </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <label for="numCard" class="form-label">Número de tarjeta:</label>
+                    <br>
+                    <input name="numCard" class="long-input form-control" onchange="invalidFeedback_OF_fields()"
+                      id="numCard" required>
+                    <div class="valid-feedback">
+                      Campo completo.
+                    </div>
+                    <div class="invalid-feedback" id="nullFormPay">
+                      Debe colocar su número de tarjeta.
+                    </div>
+                  </div>
+                  <br>
+                  <br>
+                  <div>
+                    <label for="codCard" class="form-label">Código de seguridad:</label>
+                    <br>
+                    <input name="codCard" id="codCard" class="long-input form-control"
+                      onchange="invalidFeedback_OF_fields()" required>
+                    <div class="valid-feedback">
+                      Campo completo.
+                    </div>
+                    <div class="invalid-feedback" id="nullFormPay">
+                      Debe colocar el código de seguridad.
+                    </div>
+                  </div>
+                  <br>
+                  <br>
+                  <div>
+                    <label for="expirationCard" class="form-label">Vencimiento (MM/AA):</label>
+                    <br>
+                    <input name="espirationCard" class="long-input form-control" onchange="invalidFeedback_OF_fields()"
+                      id="expCard" required>
+                    <div class="valid-feedback">
+                      Campo completo.
+                    </div>
+                    <div class="invalid-feedback" id="nullFormPay">
+                      Debe colocar el vencimiento.
+                    </div>
+                  </div>
+                  <br>
+                  <br>
+                  <div>
+                    <input type="radio" class="form-check-input" name="paymentForms" id="bankTransfer"
+                      oninput="disableCreditCard()" required>
+                    <label for="bankTransfer">Transferencia bancaria</label>
+                    <div class="invalid-feedback" id="nullFormPay">
+                      Debe elegir una forma de pago.
+                    </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <label for="bankAccount" class="form-label">Número de cuenta:</label>
+                    <br>
+                    <input name="bankAccount" class="long-input form-control" onchange="invalidFeedback_OF_fields()"
+                      id="bankAccount" required>
+                    <div class="valid-feedback">
+                      Campo completo.
+                    </div>
+                    <div class="invalid-feedback" id="nullFormPay">
+                      Debe colocar su número de cuenta
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+              </div>
+            </div>
+          </div>
 
 
-      </div>
+
+          <!-- acá termina el form -->
+      </form>
+    </div>
 
     </div>
 
@@ -135,6 +314,7 @@
       <div></div>
     </div>
   </div>
+
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
