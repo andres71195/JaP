@@ -153,4 +153,4 @@ document.addEventListener("DOMContentLoaded", function (e) {
 //     showProductsList();
 // });
 
-document.getElementById("nombreUsuarioPro").innerHTML = (localStorage.getItem("usuario"));
+document.getElementById("nombreUsuarioPro").innerHTML = (localStorage.getItem("user"));

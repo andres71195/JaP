@@ -23,6 +23,15 @@
         font-size: 3.5rem;
       }
     }
+
+    .profilePhoto {
+      margin-left: 80%;
+      width: 80px;
+      height: 80px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: black;
+    }
   </style>
 </head>
 
@@ -48,13 +57,14 @@
           </li>
           <li class="nav-item">
             <div class="dropdown">
-              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-              <span id="nombreUsuarioPro" style="color:white;"></span>
+              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <span id="nombreUsuarioPro" style="color:white;"></span>
               </a>
-            
+
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
-                <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+                <li><a class="dropdown-item" href="my-profile.html" onclick="nonLog_redirect(event)">Mi perfil</a></li>
                 <li><a class="dropdown-item" href="index.html" onclick="localStorage.clear()">Cerrar sesión</a></li>
               </ul>
             </div>
@@ -64,11 +74,120 @@
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+
+    <form class="needs-validation" id="form-profile" novalidate>
+      <br>
+      <br>
+      <div class="container">
+        <div>
+        <h3><strong>Perfil</strong><img src="img/img_perfil.png" class="profilePhoto" id="profilePhoto"></h3>
+        
+        </div>
+        <br>
+        <br>
+        <hr>
+
+        <!-- Filas y columnas -->
+        <div class="row justify-content-center">
+
+          <div class="col-4">
+            <label for="firstName" class="form-label"><strong>Primer nombre*</strong></label>
+            <br>
+            <input name="firstName" id="firstName" class="long-input form-control" required>
+            <div class="valid-feedback">
+              Campo obligatorio completado.
+            </div>
+            <div class="invalid-feedback">
+              Este campo es obligatorio.
+            </div>
+          </div>
+
+          <div class="col-4">
+            <label for="secondName" class="form-label"><strong>Segundo nombre</strong></label>
+            <br>
+            <input name="secondName" id="secondName" class="long-input form-control">
+            <div class="valid-feedback">
+              Campo optativo.
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="row justify-content-center">
+
+          <div class="col-4">
+            <label for="firsSurname" class="form-label"><strong>Primer apellido*</strong></label>
+            <br>
+            <input name="firstSurname" id="firstSurname" class="long-input form-control" required>
+            <div class="valid-feedback">
+              Campo obligatorio completado.
+            </div>
+            <div class="invalid-feedback">
+              Este campo es obligatorio.
+            </div>
+          </div>
+
+          <div class="col-4">
+            <label for="secondSurname" class="form-label"><strong>Segundo apellido</strong></label>
+            <br>
+            <input name="secondSurname" id="secondSurname" class="long-input form-control">
+            <div class="valid-feedback">
+              Campo optativo.
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="row justify-content-center">
+
+          <div class="col-4">
+            <label for="email" class="form-label"><strong>E-mail*</strong></label>
+            <br>
+            <input name="email" class="long-input form-control" id="emailProfile" required>
+            <div class="valid-feedback">
+              Email completado.
+            </div>
+            <div class="invalid-feedback">
+              Debe completar el campo Email.
+            </div>
+          </div>
+
+          <div class="col-4">
+            <label for="profilePhoto" class="form-label"><strong>Imagen de perfil</strong></label>
+            <br>
+            <input name="profilePhotoFile" type="file" id="profilePhotoFile" class="long-input form-control">
+            <div class="valid-feedback">
+              Campo optativo.
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="row justify-content-center">
+          <div class="col- offset-md-4">
+            <label for="phoneNum" class="form-label"><strong>Teléfono de contacto</strong></label>
+            <br>
+            <input name="phoneNum" type="tel" id="phoneNum" class="long-input form-control">
+            <div class="valid-feedback">
+              Campo optativo.
+            </div>
+          </div>
+        </div>
+
+        <br>
+        <br>
+        <br>
+        <hr>
+        <br>
+        <div>
+          <button type="submit" class="btn btn-primary btn-sm">Guardar cambios</button>
+        </div>
+
+        <!-- fin div container -->
       </div>
-    </div>
+
+
+    </form>
+
+
+
   </main>
   <footer class="text-muted">
     <div class="container">

@@ -267,4 +267,4 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
 });
 
-document.getElementById("nombreUsuarioPro").innerHTML = (localStorage.getItem("usuario"));
+document.getElementById("nombreUsuarioPro").innerHTML = (localStorage.getItem("user"));

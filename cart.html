@@ -40,7 +40,7 @@
 
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
-                <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+                <li><a class="dropdown-item" href="my-profile.html" onclick="nonLog_redirect(event)">Mi perfil</a></li>
                 <li><a class="dropdown-item" href="index.html" onclick="localStorage.clear()">Cerrar sesión</a></li>
               </ul>
             </div>
@@ -58,7 +58,7 @@
       <br>
       <br>
       <!-- //form para realizar validaciones con bootstrap -->
-      <form class="needs-validation" id="form-cart" action="/cart.html" novalidate>
+      <form class="needs-validation" id="form-cart" novalidate>
 
         <table id="tableProductsCart">
           <tr>

@@ -13,4 +13,4 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 });
 
-document.getElementById("nombreUsuarioPro").innerHTML = (localStorage.getItem("usuario"));
+document.getElementById("nombreUsuarioPro").innerHTML = (localStorage.getItem("user"));

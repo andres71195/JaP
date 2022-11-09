@@ -1,14 +1,14 @@
 const email = document.getElementById("email");
-const contraseña = document.getElementById("password");
-const ingresar = document.getElementById("ingresar");
+const password = document.getElementById("password");
+const ingresarButton = document.getElementById("ingresar");
 const alertEmail = document.getElementById("alertEmail")
 
-ingresar.addEventListener("click", (e) => {
+ingresarButton.addEventListener("click", (e) => {
     if (email.value === '') {
         e.preventDefault();
         document.getElementById("errorEmail").classList.remove("d-none");
     }
-    if (contraseña.value === '') {
+    if (password.value === '') {
         e.preventDefault();
         document.getElementById("errorContra").classList.remove("d-none")
     }
@@ -18,7 +18,7 @@ ingresar.addEventListener("click", (e) => {
     };
 
     if (email.value) {
-        localStorage.setItem("usuario", email.value)
+        localStorage.setItem("user", email.value)
     };
 
 });
