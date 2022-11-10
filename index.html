@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>eMercado - Todo lo que busques está aquí</title>
-  
+
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
@@ -13,23 +13,29 @@
     body {
       background-color: rgb(248, 249, 250);
     }
+
     h1 {
       text-align: center;
     }
+
     h2 {
       text-align: center;
     }
+
     h3 {
       text-align: center;
     }
+
     p {
-    text-align: center;
+      text-align: center;
     }
+
     div {
-    text-align: center;
+      text-align: center;
     }
+
     section {
-    text-align: center;
+      text-align: center;
     }
   </style>
 
@@ -41,39 +47,100 @@
   <p style="text-align:center;">
     <br>
     <br>
-    <img src="img/login.png" width="20%" height="20%"> </p>
-    <br>
-    <div>
+    <img src="img/login.png" width="20%" height="20%">
+  </p>
+  <br>
+  <div>
     <h3>Inicio de sesión</h3>
-    </div>
+  </div>
   <main class="mt-5">
     <div class="container">
-    <section>
-<label for="email" class="form-label"><strong>Email</strong></label>
-<br>
-<input id="email" name="email" type="email" autocomplete="Email" placeholder="Email" required>
-<br>
-<small id="errorEmail" class="d-none text-danger">Ingresa tu e-mail.</small>
-    </section>
-    <br>
-    <section>
-<label for="contraseña" class="form-label"><strong>Contraseña</strong></label>
-<br>
-<input id="password" name="password" type="password" placeholder="Contraseña" required>
-<br>
-<small id="errorContra" class="d-none text-danger">Ingresa tu contraseña.</small>
-    </section>
-    <br>
-    <br>
-    <section>
-<button id="ingresar" type="button" >Ingresar</button>
-    </section>
+      <section>
+        <label for="email" class="form-label"><strong>Email</strong></label>
+        <br>
+        <input id="email" name="email" type="email" autocomplete="Email" placeholder="Email" required>
+        <br>
+        <small id="errorEmail" class="d-none text-danger">Ingresa tu e-mail.</small>
+      </section>
+      <br>
+      <section>
+        <label for="contraseña" class="form-label"><strong>Contraseña</strong></label>
+        <br>
+        <input id="password" name="password" type="password" placeholder="Contraseña" required>
+        <br>
+        <small id="errorContra" class="d-none text-danger">Ingresa tu contraseña.</small>
+      </section>
+      <br>
+      <br>
+      <section>
+        <button id="ingresar" type="button">Ingresar</button>
+      </section>
     </div>
     <br>
     <br>
 
-<!-- Intento boton google -->
-<!-- Intento boton google -->
+    <!-- Intento boton google -->
+
+    <button id="botonlogin">Haz login con Google</button>  
+    <button id="botonlogout">Haz logout</button>  
+    <p id="datosuser"></p>
+  <script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js"></script>
+  <script>
+    // inicializar Firebase
+    var config = {
+      apiKey: "AIzaSyCtOoz34jTEZPKCclc--k7liE-1rbmxS_M",
+      authDomain: "auth--jap.firebaseapp.com",
+      projectId: "auth--jap",
+      storageBucket: "auth--jap.appspot.com",
+      messagingSenderId: "18087113931"
+    };
+    firebase.initializeApp(config);
+  </script>
+  
+  
+  <script>
+  // accedo al servicio de autenticación
+  var authService = firebase.auth();
+  
+  
+  // manejador de eventos para loguearse
+  document.getElementById('botonlogin').addEventListener('click', function() {
+    var provider = new firebase.auth.GoogleAuthProvider();
+    provider.addScope('email');
+    authService.signInWithPopup(provider)
+          .then(function(result) {
+              // logueado con éxito
+              console.log('Hemos autenticado al usuario ', result.user);
+          })
+          .catch(function(error) {
+              // Fallo de login
+              console.log('Se ha encontrado un error:', error);
+          });
+  })
+  
+  
+  //manejador de eventos para cerrar sesión (logout)
+  document.getElementById('botonlogout').addEventListener('click', function() {
+    authService.signOut()
+  })
+  
+  
+  // manejador de eventos para los cambios del estado de autenticación
+  authService.onAuthStateChanged(function(user) {
+    if (user) {
+      console.log('AuthStateChanged', user)
+      document.getElementById('datosuser').innerHTML = JSON.stringify(user);
+      document.getElementById('botonlogin').style.display = 'none';
+      document.getElementById('botonlogout').style.display = 'block';
+    } else {
+      document.getElementById('datosuser').innerHTML = 'Sin usuario logueado...'
+      document.getElementById('botonlogin').style.display = 'block';
+      document.getElementById('botonlogout').style.display = 'none';
+    }
+  });
+  </script>
+
+    <!-- Intento boton google -->
 
 
   </main>
@@ -88,8 +155,56 @@
     </div>
   </footer>
 
+  <!-- <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCtOoz34jTEZPKCclc--k7liE-1rbmxS_M",
+      authDomain: "auth--jap.firebaseapp.com",
+      projectId: "auth--jap",
+      storageBucket: "auth--jap.appspot.com",
+      messagingSenderId: "18087113931",
+      appId: "1:18087113931:web:eb858f973997067fd5174e"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    import { GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.11.0/firebase-auth.js";
+
+    const provider = new GoogleAuthProvider();
+
+    import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.11.0/firebase-auth.js";
+
+    const auth = getAuth();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        // ...
+      }).catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+      });
+
+  </script> -->
+
+
   <script src="js/login.js"></script>
-  <script src="js/firebase.js"></script>
+  <!-- <script src="js/firebase.js"></script> -->
 </body>
 
 </html>
