@@ -145,12 +145,30 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
 });
 
-//Intento desafiate 2. 
-// document.getElementById("searchProducts").addEventListener("keyup", (e)=>{
-//     var inputSearch = document.getElementById("searchProducts");
-//     var searchProductArray = currentProductsArray.filter(e => e.includes('inputSearch.value'));
-//     currentProductsArray = searchProductArray;
-//     showProductsList();
-// });
+
+document.getElementById("searchProducts").addEventListener("keyup", (e) => {
+
+    let inputSearch = document.getElementById("searchProducts");
+
+    getJSONData(PRODUCTS_URL + localStorage.getItem("catID") + EXT_TYPE).then(function (resultObj) {
+        if (resultObj.status === "ok") {
+
+            document.getElementById("CatName").innerHTML = resultObj.data.catName
+            currentProductsArray = resultObj.data.products;
+        }
+    });
+
+    if (inputSearch.value) {
+        let searchProductArray = currentProductsArray.filter(e => JSON.stringify(e.name).toLowerCase().includes(inputSearch.value.toLowerCase()) || JSON.stringify(e.description).includes(inputSearch.value.toLowerCase()));
+        currentProductsArray = searchProductArray;
+        showProductsList();
+    }
+
+    if (!inputSearch.value) {
+
+        showProductsList();
+    }
+
+});
 
 document.getElementById("nombreUsuarioPro").innerHTML = (localStorage.getItem("user"));

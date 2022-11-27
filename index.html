@@ -81,64 +81,72 @@
 
     <!-- Intento boton google -->
 
-    <button id="botonlogin">Haz login con Google</button>  
-    <button id="botonlogout">Haz logout</button>  
-    <p id="datosuser"></p>
-  <script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js"></script>
-  <script>
-    // inicializar Firebase
-    var config = {
-      apiKey: "AIzaSyCtOoz34jTEZPKCclc--k7liE-1rbmxS_M",
-      authDomain: "auth--jap.firebaseapp.com",
-      projectId: "auth--jap",
-      storageBucket: "auth--jap.appspot.com",
-      messagingSenderId: "18087113931"
-    };
-    firebase.initializeApp(config);
-  </script>
-  
-  
-  <script>
-  // accedo al servicio de autenticación
-  var authService = firebase.auth();
-  
-  
-  // manejador de eventos para loguearse
-  document.getElementById('botonlogin').addEventListener('click', function() {
-    var provider = new firebase.auth.GoogleAuthProvider();
-    provider.addScope('email');
-    authService.signInWithPopup(provider)
-          .then(function(result) {
-              // logueado con éxito
-              console.log('Hemos autenticado al usuario ', result.user);
+    <div class="container">
+      <button type="button" class="btn btn-info" id="botonlogin">Login Google</button>
+    </div>
+    <!-- <button id="botonlogout">Logout Google</button>  
+    <p id="datosuser"></p> -->
+
+    <!-- <script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js"></script> -->
+
+    <script>
+
+      // inicializar Firebase
+      var config = {
+        apiKey: "AIzaSyCtOoz34jTEZPKCclc--k7liE-1rbmxS_M",
+        authDomain: "auth--jap.firebaseapp.com",
+        projectId: "auth--jap",
+        storageBucket: "auth--jap.appspot.com",
+        messagingSenderId: "18087113931"
+      };
+      firebase.initializeApp(config);
+    </script>
+
+
+    <script>
+      // accedo al servicio de autenticación
+      var authService = firebase.auth();
+
+
+      // manejador de eventos para loguearse
+      document.getElementById('botonlogin').addEventListener('click', function () {
+        var provider = new firebase.auth.GoogleAuthProvider();
+        provider.addScope('email');
+        authService.signInWithPopup(provider)
+          .then(function (result) {
+            // logueado con éxito
+            console.log('Hemos autenticado al usuario ', result.user.email);
+            localStorage.setItem("cuenta_google", result.user.email)
+            window.location = "main.html"
           })
-          .catch(function(error) {
-              // Fallo de login
-              console.log('Se ha encontrado un error:', error);
+          .catch(function (error) {
+            // Fallo de login
+            console.log('Se ha encontrado un error:', error);
           });
-  })
-  
-  
-  //manejador de eventos para cerrar sesión (logout)
-  document.getElementById('botonlogout').addEventListener('click', function() {
-    authService.signOut()
-  })
-  
-  
-  // manejador de eventos para los cambios del estado de autenticación
-  authService.onAuthStateChanged(function(user) {
-    if (user) {
-      console.log('AuthStateChanged', user)
-      document.getElementById('datosuser').innerHTML = JSON.stringify(user);
-      document.getElementById('botonlogin').style.display = 'none';
-      document.getElementById('botonlogout').style.display = 'block';
-    } else {
-      document.getElementById('datosuser').innerHTML = 'Sin usuario logueado...'
-      document.getElementById('botonlogin').style.display = 'block';
-      document.getElementById('botonlogout').style.display = 'none';
-    }
-  });
-  </script>
+      })
+
+
+      //manejador de eventos para cerrar sesión (logout)
+      // document.getElementById('botonlogout').addEventListener('click', function() {
+      //   authService.signOut()
+      // })
+
+
+      // manejador de eventos para los cambios del estado de autenticación
+      // authService.onAuthStateChanged(function (user) {
+      //   if (user) {
+      //     console.log('AuthStateChanged', user.email)
+      //     window.location = "main.html"
+      //     // document.getElementById('datosuser').innerHTML = JSON.stringify(user);
+      //     // document.getElementById('botonlogin').style.display = 'none';
+      //     // document.getElementById('botonlogout').style.display = 'block';
+      //   } else {
+      //     // document.getElementById('datosuser').innerHTML = 'Sin usuario logueado...'
+      //     // document.getElementById('botonlogin').style.display = 'block';
+      //     // document.getElementById('botonlogout').style.display = 'none';
+      //   }
+      // });
+    </script>
 
     <!-- Intento boton google -->
 
@@ -202,9 +210,10 @@
 
   </script> -->
 
-
+  <script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js"></script>
   <script src="js/login.js"></script>
   <!-- <script src="js/firebase.js"></script> -->
+  <script src="js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
