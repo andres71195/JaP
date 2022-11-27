@@ -187,6 +187,27 @@ function new_shipping_Cost() {
 
 })();
 
+//Función para eliminar elementos del carrito (icono de papelera)
+function deleteCartArticle(index) {
+
+    //1.Elimino articulo del array cartArticlesArray.articles usando splice
+    let remove = cartArticlesArray.articles.splice(index,1);
+
+    //2.Elimino articulo del array existente en el localstorage como "carritoID"
+
+    //A.Traigo el array del localStorage
+    let arrlocalStorage = JSON.parse(localStorage.getItem("carritoID"));
+
+    //B.Elimino el elemento
+    let push_off = arrlocalStorage.splice(index - 1);
+
+    //C.Cargo el nuevo array al localStorage
+    localStorage.setItem("carritoID", JSON.stringify(arrlocalStorage));
+
+    //3.Muestro los nuevos elementos con la función showCartArticles(), la cual también actualiza los costos.
+    showCartArticles();
+
+};
 
 let showCartArticles = () => {
 
@@ -206,6 +227,7 @@ let showCartArticles = () => {
 <td>${currency}  <span>${unitCost}</span></td>
 <td><input type="number" style= "text-align: center" class= "form-control" min="1" value="${count}" id="input${i}" oninput = "calcSubTotal(${unitCost}, ${i}, '${currency}')" required></td>
 <td><strong> <span id="subTotal${i}" class="subTotal">${currency} ${unitCost * count}</span></strong></td>
+<td><button type="button" id="bin${i}" style="border: 0;" onclick="deleteCartArticle(${i})" ><i class="fa fa-trash fa-2x" aria-hidden="true"></i></button></td>
 </tr>
     `;
 
@@ -218,13 +240,16 @@ let showCartArticles = () => {
 
     };
 
+    document.getElementById("tableProductsCart").innerHTML = "";
     document.getElementById("tableProductsCart").innerHTML += htmlContent;
+    document.getElementById("subtotal_General").innerHTML = " ";
     document.getElementById("subtotal_General").innerHTML += total;
     setShippingCost();
     showTotal()
 };
 
 document.addEventListener("DOMContentLoaded", (e) => {
+
 
     //Creo una variable para referenciar el array del localStorage
 
